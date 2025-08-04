@@ -12,36 +12,52 @@ const NewBill = () => {
     const [UserPostCount, setUserPostCount] = useState(null);
 const [showOnlyMyPosts, setShowOnlyMyPosts] = useState(false);
 
-  const fetchPosts = async () => {
-    const token = localStorage.getItem("token");
-    try {
-      const res = await axios.get("https://my-backend-55fe.onrender.com/api/v1/crud/all", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const allpost=res.data;
-      setPosts(allpost);
+const fetchPosts = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  try {
+    const res = await axios.get("https://my-backend-55fe.onrender.com/api/v1/crud/all", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const allpost = res.data;
+    setPosts(allpost);
+    
     const userPosts = allpost.filter((post) => post.createdBy === loggedInUserId);
     const count = userPosts.length;
     localStorage.setItem("postCount", count); 
     setUserPostCount(count); 
-    } catch (err) {
-      console.error("Failed to fetch posts", err);
-    }
-  };
+  } catch (err) {
+    console.error("Failed to fetch posts", err);
+  }
+};
 
 useEffect(() => {
   const token = localStorage.getItem("token");
-  if (token) {
-    const decoded = jwtDecode(token);
-    const id = decoded.id || decoded._id;
-    setLoggedInUserId(id);
 
-    const count = localStorage.getItem("postCount");
-    if (count !== null) {
-      setUserPostCount(parseInt(count));
+  if (token) {
+    try {
+      const decoded = jwtDecode(token);
+      const id = decoded?.id || decoded?._id;
+
+      if (id) {
+        setLoggedInUserId(id);
+        const count = localStorage.getItem("postCount");
+        if (count !== null) {
+          setUserPostCount(parseInt(count));
+        }
+      } else {
+        console.warn("Token decoded but no user ID found");
+      }
+
+    } catch (error) {
+      console.error("Invalid token:", error);
+      localStorage.removeItem("token");
     }
+  } else {
+    console.warn("No token found in localStorage");
   }
 }, []);
 
