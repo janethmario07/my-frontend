@@ -1,7 +1,7 @@
 
- import Login from "../Components/login/Login";
- import Home from "../Components/page/Home";
- import UpdateProfile from "../Components/login/UpdateProfile";
+ import Login from "../components/login/Login";
+ import Home from "../components/page/Home";
+ import UpdateProfile from "../components/login/UpdateProfile";
 
 
 export const route1 = [
