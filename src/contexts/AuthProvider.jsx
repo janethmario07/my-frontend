@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     setError("");
     try {
      const res = await axios.post(
-  "http://localhost:3001/api/v1/auth/login",
+  "https://my-backend-55fe.onrender.com/api/v1/auth/login",
   { username, password },
   { headers: { "Content-Type": "application/json" } }
 );
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:3001/api/v1/auth/signup", // Make sure this is your signup endpoint
+      "https://my-backend-55fe.onrender.com/api/v1/auth/signup", // Make sure this is your signup endpoint
       formData,
       {
         headers: {
