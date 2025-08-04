@@ -1,6 +1,6 @@
 
  import Login from "../components/Login/Login";
- import Home from "../components/Page/Home";
+ import Home from "../components/Page/home";
  import UpdateProfile from "../components/Login/UpdateProfile";
 
 
