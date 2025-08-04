@@ -17,20 +17,7 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
     return <Navigate to="/" replace />;
   }
 
-  // If role not permitted
-  if (allowedRoles.length > 0 && !allowedRoles.includes(role)) {
-    const roleBasedRedirects = {
-      admin: "/Dashboard",
-      warden: "/StudentDetails",
-      chef: "/FoodAndKitchen",
-      storeman: "/StoreRoom",
-    };
 
-    const fallbackPath = roleBasedRedirects[role] || "/";
-
-    return <Navigate to={fallbackPath} replace />;
-  }
-  
 
   // Access granted
   return children;
