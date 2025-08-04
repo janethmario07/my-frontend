@@ -9,7 +9,7 @@
   "lint": "eslint .",
   "preview": "vite preview",
   "postinstall": "chmod +x node_modules/.bin/vite"
-}
+},
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
