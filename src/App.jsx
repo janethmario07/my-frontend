@@ -4,7 +4,7 @@ import {
   useLocation
 } from "react-router-dom";
 import "./App.css";
-import Header from "./Components/Header/Header.jsx";
+import Header from "./components/Header/Header";
 import { route1 } from "./utils/AppRoutes";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import { Toaster } from "sonner";
