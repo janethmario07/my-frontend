@@ -47,17 +47,18 @@ export const AuthProvider = ({ children }) => {
   setError("");
 
   try {
-    const res = await axios.post(
-      "https://my-backend-55fe.onrender.com/api/v1/auth/signup", // Make sure this is your signup endpoint
-      formData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+   const res = await axios.post(
+  "https://my-backend-55fe.onrender.com/api/v1/auth/signup", // ✅ Your backend endpoint
+  formData, // ✅ This should be a JSON object like { name: '', email: '', password: '' }
+  {
+    withCredentials: true, // ✅ Only if you're using cookies (see note below)
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+);
 
-    const { token, user } = res.data;
+co
 
     localStorage.setItem("token", token);
     setToken(token);
