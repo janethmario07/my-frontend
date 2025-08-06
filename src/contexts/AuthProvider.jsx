@@ -19,48 +19,48 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  const login = async ({ username, password }) => {
-    setIsLoading(true);
-    setError("");
-    try {
-     const res = await axios.post(
-  "https://my-backend-55fe.onrender.com/api/v1/auth/login",
-  { username, password },
-  { headers: { "Content-Type": "application/json" } }
-);
+const login = async ({ username, password }) => {
+  setIsLoading(true);
+  setError("");
+  try {
+    const res = await axios.post(
+      "https://my-backend-55fe.onrender.com/api/v1/auth/login",
+      { username, password },
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true // ✅ Required for CORS + Auth headers
+      }
+    );
 
-      const { token, user } = res.data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("userInformation", JSON.stringify(user));
-      setToken(token);
-      setUser(user);     
-       return true;
-    } catch (err) {
-      setError("Invalid credentials");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+    const { token, user } = res.data;
+    localStorage.setItem("token", token);
+    localStorage.setItem("userInformation", JSON.stringify(user));
+    setToken(token);
+    setUser(user);
+    return true;
+  } catch (err) {
+    setError("Invalid credentials");
+  } finally {
+    setIsLoading(false);
+  }
+};
    const register = async (formData) => {
   setIsLoading(true);
   setError("");
 
   try {
-   const res = await axios.post(
-  "https://my-backend-55fe.onrender.com/api/v1/auth/signup", // ✅ Your backend endpoint
-  formData, // ✅ This should be a JSON object like { name: '', email: '', password: '' }
-  {
-    withCredentials: true, // ✅ Only if you're using cookies (see note below)
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }
-);
+    const res = await axios.post(
+      "https://my-backend-55fe.onrender.com/api/v1/auth/signup", // Make sure this is your signup endpoint
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-co
+    const { token, user } = res.data;
 
-    localStorage.setItem("token", token);
     setToken(token);
     setUser(user);
     return true;
