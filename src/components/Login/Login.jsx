@@ -34,7 +34,7 @@ const opensignup=async()=>{
     <section className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       {!isSignup && <div className="bg-white shadow-md rounded-lg flex flex-col md:flex-row max-w-2xl w-full overflow-hidden">
         <div className="w-full p-4">
-          <h2 className="text-2xl font-bold text-blue-600 mb-2">LinkedIn</h2>
+          <h2 className="text-2xl font-bold text-blue-600 mb-2">LinkedIn1</h2>
           <h3 className="text-2xl font-bold mb-4">Welcome back</h3>
           <p className="text-sm text-gray-600 mb-6">
             Welcome to your professional community?{" "}
